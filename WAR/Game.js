@@ -35,7 +35,7 @@ WAR.Game.prototype.startGame = function () {
     signal("newWar"/*, true*/);
     
     if (this.loopSpeed == "SLOW") {
-        this.loopInterval = setInterval(signal, 1000, "playTurn");
+        this.loopInterval = setInterval(signal, 500, "playTurn");
     } else if (this.loopSpeed == "FAST") {
         this.loopInterval = setInterval(signal, (1000/30), "playTurn");
     }
