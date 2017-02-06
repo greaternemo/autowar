@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <link rel="stylesheet" type="text/css" href="war.css">
+    
+    <head>
+        
+        
+        
+    </head>
+    
+    <body onload="WAR.init()">
+        
+        <div id="game_box">
+            
+            <div id="opt_panel">
+                
+                <br>
+                <button id="ctrl_loop" onclick="signal('toggleLoop')">
+                    Start Game
+                </button>
+                <br>
+                <br>
+                <button id="loop_speed" onclick="signal('toggleLoopSpeed')">
+                    Speed Up
+                </button>
+                <br>
+                <br>
+                <code id="p1_stats"></code>
+                <br>
+                <br>
+                <code id="p2_stats"></code>
+                <!--
+                <br>
+                <br>
+                <input id="box_short" type="checkbox">
+                    Shorter Lines
+                </input>
+                -->
+                
+            </div>
+            
+            <div id="msg_panel">
+                
+                <code id="msg_feed">Welcome to WAR</code>
+                
+            </div>
+        
+        </div>
+        
+    </body>
+    
+    <script src="WAR.js"></script>
+    <script src="WAR/Arena.js"></script>
+    <script src="WAR/BASE.js"></script>
+    <script src="WAR/Game.js"></script>
+    <script src="WAR/Narrator.js"></script>
+    <script src="WAR/Registry.js"></script>
+    <script src="WAR/Router.js"></script>
+    <script src="WAR/Util.js"></script>
+    
+</html>
