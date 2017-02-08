@@ -36,6 +36,7 @@ WAR.BASE = {
         ],
         Narrator: [
             'narrate',
+            'clearFeed',
         ],
         Registry: [
             'stdDeck',

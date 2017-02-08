@@ -52,6 +52,7 @@ WAR.Game.prototype.endGame = function () {
 WAR.Game.prototype.startNewGame = function () {
     this.ctrl.innerHTML = "Pause Game"
     this.loopState = true;
+    signal("clearFeed");
     return this.startGame();
 };
 

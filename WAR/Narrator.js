@@ -6,9 +6,13 @@ WAR.Narrator = function (params) {
 };
 
 WAR.Narrator.prototype.narrate = function (params) {
-    this.buildMsg();
+    //this.buildMsg();
     this.addLine(params);
 };
+
+WAR.Narrator.prototype.clearFeed = function () {
+    this.mFeed.innerHTML = 'Starting new game!';
+}
 
 WAR.Narrator.prototype.buildMsg = function (params) {
     

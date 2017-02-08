@@ -2,7 +2,9 @@
 
 WAR.Arena = function () {
     this.p1 = {
-        pName: 'P1',
+        pName: 'Nemo',
+        pWins: 0,
+        pLosses: 0,
         pStatus: 'READY',
         pDeck: [],
         pDiscard: [],
@@ -10,7 +12,9 @@ WAR.Arena = function () {
         pStats: signal('byId', 'p1_stats'),
     };
     this.p2 = {
-        pName: 'P2',
+        pName: 'Shoag',
+        pWins: 0,
+        pLosses: 0,
         pStatus: 'READY',
         pDeck: [],
         pDiscard: [],
@@ -140,12 +144,14 @@ WAR.Arena.prototype.clash = function () {
     
     if (pIdx1 < pIdx2) {
         battleMsg = 
-          'Clash: ' + pv2 + ' vs ' + pv1 + '! P2 beats P1!';
+          'Clash: ' + pv2 + ' vs ' + pv1 + '! ' + 
+            this.p2.pName + ' beats ' + this.p1.pName + '!';
         this.triumph(this.p2, this.p1);
         victor = this.p2;
     } else if (pIdx1 > pIdx2) {
         battleMsg =
-          'Clash: ' + pv1 + ' vs ' + pv2 + '! P1 beats P2!';
+          'Clash: ' + pv1 + ' vs ' + pv2 + '! ' +
+            this.p1.pName + ' beats ' + this.p2.pName + '!';
         this.triumph(this.p1, this.p2);
         victor = this.p1;
     } else {
@@ -251,6 +257,9 @@ WAR.Arena.prototype.flipCheck = function () {
 WAR.Arena.prototype.playerLoss = function (bResult) {
     // get rekt
     let rekt = '' + bResult.victor.pName + ' wins!';
+    bResult.victor.pWins++;
+    bResult.loser.pLosses++;
+    this.updateStats();
     // tell narrator
     signal('narrate', rekt);
     // stop game state?
@@ -258,12 +267,14 @@ WAR.Arena.prototype.playerLoss = function (bResult) {
 };
 
 WAR.Arena.prototype.updateStats = function () {    
-    this.p1.pStats.innerHTML = "P1:";
+    this.p1.pStats.innerHTML = '' + this.p1.pName + ':';
+    this.p1.pStats.innerHTML += '\n' + "W: " + this.p1.pWins + " L: " + this.p1.pLosses;
     this.p1.pStats.innerHTML += '\n' + "Deck: " + this.p1.pDeck.length;
     this.p1.pStats.innerHTML += '\n' + "Discard: " + this.p1.pDiscard.length;
     this.p1.pStats.innerHTML += '\n' + "Queue: " + this.p1.pQueue.length;
     
-    this.p2.pStats.innerHTML = "P2:";
+    this.p2.pStats.innerHTML = '' + this.p2.pName + ':';
+    this.p2.pStats.innerHTML += '\n' + "W: " + this.p2.pWins + " L: " + this.p2.pLosses;
     this.p2.pStats.innerHTML += '\n' + "Deck: " + this.p2.pDeck.length;
     this.p2.pStats.innerHTML += '\n' + "Discard: " + this.p2.pDiscard.length;
     this.p2.pStats.innerHTML += '\n' + "Queue: " + this.p2.pQueue.length;
